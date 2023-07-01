@@ -1,0 +1,17 @@
+import os
+
+"""PATHS"""
+BASE_DIR = "D:\dev\auro-poe"
+TEMPLATES_DIR = os.path.join(BASE_DIR, "assets")
+
+
+"""WINDOW"""
+WINDOW_NAME = "Path of Exile"
+WINDOW_WIDTH = 424
+WINDOW_HEIGHT = 727
+
+"""TELEGRAM"""
+TELEGRAM_API_KEY = '1219818658:AAERsK7cI_NPgqPz8naLk1EuS8822FtyudM'
+TELEGRAM_CHAT_ID = '-1001240340647'
+
+
