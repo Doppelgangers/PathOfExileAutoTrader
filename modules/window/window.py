@@ -7,12 +7,12 @@ from ahk import AHK
 
 class Window:
 
-    left: int = 0
-    top: int = 0
-    width: int = 0
-    height: int = 0
+    _left: int = 0
+    _top: int = 0
+    _width: int = 0
+    _height: int = 0
 
-    def __init__(self, name_window, fix_offset: dict = {"x": 0, "y": 0, "w": 0, "h": 0} ):
+    def __init__(self, name_window, fix_offset: dict = {"x": 0, "y": 0, "w": 0, "h": 0}):
         self.__logger = logging.getLogger(__name__)
         self.fix_offset_window = fix_offset
         self.__ahk = AHK()
@@ -20,11 +20,28 @@ class Window:
         self.window = self.get_window_by_name(name_window=name_window)
         self.name_window = self.window.title.decode('utf-8')
         self.window.activate()
+        self.update_window_position()
+
+    @property
+    def left(self):
+        return self._left
+
+    @property
+    def top(self):
+        return self._top
+
+    @property
+    def width(self):
+        return self._width
+
+    @property
+    def height(self):
+        return self._height
 
     @property
     def window_position_in_monitor(self) -> dict:
         self.update_window_position()
-        return {"left": self.left, "top": self.top, "width": self.width, "height": self.height}
+        return {"left": self._left, "top": self._top, "width": self._width, "height": self._height}
 
     def get_window_by_name(self, name_window) -> ahk.window:
         """
@@ -44,13 +61,13 @@ class Window:
         Обновляет данные объекта
         """
         size = self.window.rect
-        self.left = size[0] + self.fix_offset_window["x"]
-        self.top = size[1] + self.fix_offset_window["y"]
-        self.width = size[2] + self.fix_offset_window["w"]
-        self.height = size[3] + self.fix_offset_window["h"]
+        self._left = size[0] + self.fix_offset_window["x"]
+        self._top = size[1] + self.fix_offset_window["y"]
+        self._width = size[2] + self.fix_offset_window["w"]
+        self._height = size[3] + self.fix_offset_window["h"]
 
         self.__logger.debug(f""" Обновление позиции window.
-        { f"Координаты окна {self.name_window} [left = {self.left}, top = {self.top}, width = {self.width}, height = {self.height}]" if log_position else f""}
+        { f"Координаты окна {self.name_window} [left = {self._left}, top = {self._top}, width = {self._width}, height = {self._height}]" if log_position else f""}
         """)
 
     def set_size_window(self, width: int = 424, height: int = 727):
