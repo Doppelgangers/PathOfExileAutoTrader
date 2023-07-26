@@ -17,8 +17,8 @@ class Regular_tab(Base_grid):
         base_offset_y = round(self.window.height * 0.1256)
         if is_folder:
             base_offset_y += round(self.window.height * 0.032)
-        left = left - 1
-        top = top - 1
+        left -= 1
+        top -= 1
         x1 = base_offset_x + self.inventory_chell_length * left
         y1 = base_offset_y + self.inventory_chell_length * top
         x2 = x1 + self.inventory_chell_length

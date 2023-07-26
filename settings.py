@@ -9,6 +9,9 @@ TEMPLATES_DIR = os.path.join(BASE_DIR, "assets")
 WINDOW_NAME = "Path of Exile"
 WINDOW_WIDTH = 424
 WINDOW_HEIGHT = 727
+DEFAULT_WINDOW = {"x": 8, "y": 8, "w": -16, "h": -16}
+OFFSET_WINDOW_HEADER = {"x": 0, "y": 23, "w": 0, "h": -23}
+OFFSET_WINDOW = {key: DEFAULT_WINDOW[key] + OFFSET_WINDOW_HEADER[key] for key in DEFAULT_WINDOW}
 
 """TELEGRAM"""
 TELEGRAM_API_KEY = '1219818658:AAERsK7cI_NPgqPz8naLk1EuS8822FtyudM'
