@@ -6,7 +6,7 @@ class Regular_tab(Base_grid):
     def __init__(self, window):
         super().__init__(window=window)
 
-    def find_chell(self, left, top, is_folder=False):
+    def find_chell(self, left: int, top: int, is_folder=False) -> (tuple[int, int], tuple[int, int]):
         """
         params: left (number from 1 to 12, specifies the position of the cell in the row)
         params: top (number from 1 to 12, specifies the position of the cell in the column)
