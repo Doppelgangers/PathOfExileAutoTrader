@@ -58,7 +58,7 @@ class Image:
     def find_by_color(self, hsv: (tuple[int] | dict[int]), size: float | int = 2) -> dict[tuple[int], tuple[int]]:
         pass
 
-    def check_color_hcv(self, hsv: (tuple[int] | dict[int])) -> int:
+    def check_number_of_colors(self, hsv: (tuple[int] | dict[int])) -> int:
         hMin, sMin, vMin, hMax, sMax, vMax = hsv
         hsv_min = (hMin, sMin, vMin)
         hsv_max = (hMax, sMax, vMax)
@@ -66,6 +66,9 @@ class Image:
         hsv = cv2.cvtColor(self.image, cv2.COLOR_BGR2HSV)
         masc = cv2.inRange(hsv, hsv_min, hsv_max)
         moments = cv2.moments(masc, 1)
-        dM01 = moments['m01']
-        dM10 = moments['m10']
-        dArea = moments['m00']
+        return moments['m00']
+
+    def cut_image(self, pos1, pos2):
+        x1, y1 = pos1
+        x2, y2 = pos2
+        return self.image[y1:y2, x1:x2]
