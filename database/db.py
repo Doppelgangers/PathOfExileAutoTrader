@@ -18,8 +18,10 @@ class SingletonMeta(type):
 
 class Database(metaclass=SingletonMeta):
 
-    def __init__(self, path_sqlalchemy):
-        self.engine = sqlalchemy.create_engine(settings.SQLALCHEMY_PATH, echo=settings.SQLALCHEMY_ECHO)
+    def __init__(self, path_sqlalchemy: str = ''):
+        if not path_sqlalchemy:
+            path_sqlalchemy = settings.SQLALCHEMY_PATH
+        self.engine = sqlalchemy.create_engine(path_sqlalchemy, echo=settings.SQLALCHEMY_ECHO)
         Base.metadata.create_all(bind=self.engine)
 
         self.session = Session(self.engine)
@@ -59,4 +61,3 @@ class Database_Task(Database):
         stmt = sqlalchemy.select(Deal).where(Deal.status == "pending").options(selectinload(Deal.currency))
         deal: Deal | None = self.session.scalar(stmt)
         return deal
-
