@@ -28,3 +28,5 @@ class Deal(Base):
     status: Mapped[str] = mapped_column(String(32))
 
 
+
+

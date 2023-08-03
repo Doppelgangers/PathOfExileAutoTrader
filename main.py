@@ -3,6 +3,7 @@ import datetime
 import cv2
 from sqlalchemy.orm import Session, selectinload
 
+from database.db import Database, Database_Task
 from modules.grids.inventory import Inventory_tab
 from modules.grids.regular_tab import Regular_tab
 from modules.grids.trade_grid import Trade_grid
@@ -14,12 +15,9 @@ from models import Base, Currency, Deal
 import sqlalchemy
 
 
-
-
-
-
 def main():
-    pass
+    db = Database_Task()
+    print(db.fetch_task())
 
         # create_deal(session, name="Evil_doppelganger", item="Devil sword", price=10, currency="Chaos", league="Crushible", section="T1", left=1, top=1)
         # task = fetch_task(session)

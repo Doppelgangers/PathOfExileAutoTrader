@@ -32,7 +32,7 @@ class Database(metaclass=SingletonMeta):
 
 class Database_Task(Database):
 
-    def __init__(self, path_sqlalchemy):
+    def __init__(self, path_sqlalchemy: str = ''):
         super().__init__(path_sqlalchemy=path_sqlalchemy)
 
     def fetch_currency_for_bd(self, name: str) -> Currency | None:
@@ -51,7 +51,7 @@ class Database_Task(Database):
             section=section,
             left=left,
             top=top,
-            time=datetime.datetime.now(),
+            time=datetime.now(),
             status=status
         )
         self.session.add(deal)
