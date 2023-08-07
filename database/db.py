@@ -35,13 +35,13 @@ class Database_Task(Database):
     def __init__(self, path_sqlalchemy: str = ''):
         super().__init__(path_sqlalchemy=path_sqlalchemy)
 
-    def fetch_currency_for_bd(self, name: str) -> Currency | None:
+    def fetch_currency_for_name(self, name: str) -> Currency | None:
         stmt = sqlalchemy.select(Currency).where(Currency.name_ru == name or Currency.name_en == name)
         cur: Currency | None = self.session.scalar(stmt)
         return cur
 
     def create_deal(self, name, item, price, currency, league, section, left, top, status="pending"):
-        currency = self.fetch_currency_for_bd(name=currency)
+        currency = self.fetch_currency_for_name(name=currency)
         deal = Deal(
             name=name,
             item=item,
