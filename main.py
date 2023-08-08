@@ -1,4 +1,6 @@
+import settings
 from database.db import Database_Task
+from modules.window.window import Window
 
 
 def main():
@@ -17,12 +19,13 @@ def main():
 
             break
 
-    if __name__ == "__main__":
-        main()
+if __name__ == "__main__":
+    game_window = Window(settings.WINDOW_NAME, fix_offset=settings.OFFSET_WINDOW)
+    # print(game_window.name_window)
+        # main()
 
     # logging.basicConfig(level=logging.INFO)
     #
-    # game_window = Window(settings.WINDOW_NAME, fix_offset=settings.OFFSET_WINDOW)
     #
     # img = Image(image=game_window.get_screenshot_window())
     #

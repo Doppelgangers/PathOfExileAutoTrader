@@ -15,8 +15,3 @@ while True:
             if data := Parser_poe_log.parse_trades_for_regular_tab(log):
                 new_deal = DB.create_deal(**data)
 
-
-
-
-
-
